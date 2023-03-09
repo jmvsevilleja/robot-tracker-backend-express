@@ -1,16 +1,8 @@
 import axios from "axios";
 
-export enum avatarType {
-  MALE = "male",
-  FEMALE = "female",
-}
-
-export const getAvatarUrl = async (
-  name: string,
-  type: avatarType = avatarType.MALE
-): Promise<string> => {
+export const getAvatarUrl = async (name: string): Promise<string> => {
   const response = await axios.get(
-    `https://avatars.dicebear.com/api/${type}/${name}.svg`
+    `https://avatars.dicebear.com/api/bottts/${name}.svg`
   );
 
   if (response.status === 200) {
