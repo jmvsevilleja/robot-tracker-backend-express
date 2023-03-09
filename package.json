@@ -2,10 +2,10 @@
   "name": "robot-tracker-backend-express",
   "version": "1.0.0",
   "description": "A simple app to list and track bots",
-  "main": "dist/server.js",
+  "main": "dist/index.js",
   "scripts": {
-    "start": "node dist/server.js",
-    "dev": "nodemon --watch src/**/*.ts --exec ts-node src/server.ts",
+    "start": "node dist/index.js",
+    "dev": "nodemon --watch src/**/*.ts --exec ts-node src/index.ts",
     "build": "tsc"
   },
   "repository": {
