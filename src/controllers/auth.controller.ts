@@ -3,6 +3,8 @@ import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 import { getRepository } from "typeorm";
 import { User } from "../entities/user.entity";
+import dotenv from "dotenv";
+dotenv.config();
 
 export const loginUser = async (req: Request, res: Response) => {
   const { email, password } = req.body;
@@ -30,7 +32,7 @@ export const loginUser = async (req: Request, res: Response) => {
   // Generate and return a JWT token
   const token = jwt.sign(
     { userId: user.id, email: user.email },
-    process.env.JWT_SECRET as string,
+    process.env.JWT_SECRET || "secret",
     { expiresIn: "1h" }
   );
   res.json({ token });
