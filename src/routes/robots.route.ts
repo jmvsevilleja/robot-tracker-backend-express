@@ -1,4 +1,4 @@
-import express from "express";
+import { Router } from "express";
 import {
   getRobots,
   getRobot,
@@ -7,7 +7,7 @@ import {
   deleteRobot,
 } from "../controllers/robot.controller";
 
-const router = express.Router();
+const router = Router();
 
 router.get("/", getRobots);
 router.post("/", createRobot);
