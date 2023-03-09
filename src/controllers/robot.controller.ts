@@ -67,10 +67,5 @@ export const deleteRobot = async (req: Request, res: Response) => {
   }
 
   await robotRepository.delete(robot);
-  res
-    .json({
-      status: "success",
-      message: `Successfully deleted robot with id ${id}`,
-    })
-    .sendStatus(204);
+  res.sendStatus(204);
 };
