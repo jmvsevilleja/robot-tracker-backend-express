@@ -58,7 +58,7 @@ This is a simple app to list and track your robots. Each robot has a name and a 
 
 This app uses JSON Web Token (JWT) based authentication. To access the protected routes, you need to include a valid JWT token in the `Authorization` header of your HTTP requests.
 
-To obtain a JWT token, make a POST request to `/auth/login` with a JSON body containing your username and password:
+To obtain a JWT token, make a POST request to `/auth/login` with a JSON body containing your email and password:
 
 ```
 POST /auth/login
@@ -78,7 +78,7 @@ Content-Type: application/json
 }`
 ```
 
-Include the JWT token in subsequent requests like this:
+Include the JWT token in subsequent requests with header like this:
 
 ```
 GET /robots
