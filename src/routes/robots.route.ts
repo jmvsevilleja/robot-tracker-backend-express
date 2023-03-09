@@ -6,13 +6,15 @@ import {
   updateRobot,
   deleteRobot,
 } from "../controllers/robot.controller";
+// Import the middleware function for JWT authentication
+import { auth } from "../middlewares/auth.middleware";
 
 const router = Router();
 
-router.get("/", getRobots);
-router.post("/", createRobot);
-router.get("/:id", getRobot);
-router.put("/:id", updateRobot);
-router.delete("/:id", deleteRobot);
+router.get("/", auth, getRobots);
+router.post("/", auth, createRobot);
+router.get("/:id", auth, getRobot);
+router.put("/:id", auth, updateRobot);
+router.delete("/:id", auth, deleteRobot);
 
 export default router;
