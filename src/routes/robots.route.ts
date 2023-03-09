@@ -1,13 +1,9 @@
 import express from "express";
-import { getRepository } from "typeorm";
-import { Robot } from "../entities/robot.entity";
+import { getRobots, createRobot } from "../controllers/robot.controller";
 
-export const robotRouter = express.Router();
+const router = express.Router();
 
-robotRouter.get("/", async (req, res) => {
-  const robotRepository = getRepository(Robot);
-  const robots = await robotRepository.find();
-  res.json(robots);
-});
+router.get("/", getRobots);
+router.post("/", createRobot);
 
-export default robotRouter;
+export default router;
