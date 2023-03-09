@@ -1,49 +1,40 @@
-import express, { Request, Response, NextFunction } from "express";
+import express, { Request, Response } from "express";
 import cors from "cors";
-import jwt from "jsonwebtoken";
-import { connectToDatabase } from "./database";
+import "reflect-metadata";
+import { createConnection } from "typeorm";
+import dotenv from "dotenv";
+import robotsRouter from "./routes/robots.route";
+import bodyParser from "body-parser";
+
+dotenv.config();
 
 const app = express();
 const port = process.env.PORT || 3000;
 
-// Connect to database
-connectToDatabase()
-  .then(() => {
-    console.log("Connected to database!");
-  })
-  .catch((err) => {
-    console.error("Failed to connect to database:", err);
-  });
-
-// Middleware
-//app.use(morgan("dev")); for logs
-//app.use(helmet()); for security
-app.use(cors());
 app.use(express.json());
-
-// Authentication middleware
-function authenticateToken(req: Request, res: Response, next: NextFunction) {
-  const authHeader = req.headers.authorization;
-  const token = authHeader && authHeader.split(" ")[1];
-  if (token == null) return res.sendStatus(401);
-
-  jwt.verify(
-    token,
-    process.env.ACCESS_TOKEN_SECRET || "secret",
-    (err: any, user: any) => {
-      if (err) return res.sendStatus(403);
-      req.body.user = user;
-      next();
-    }
-  );
-}
+app.use(cors());
 
 // Routes
 app.get("/", (req: Request, res: Response) => {
   res.send("Welcome to Robot Tracker API!");
 });
 
-// Start the server
-app.listen(port, () => {
-  console.log(`Server running on port ${port}`);
-});
+createConnection()
+  .then((connection) => {
+    console.log(`Connected to ${connection.options.type} database.`);
+    const app = express();
+
+    app.use(cors());
+    app.use(bodyParser.json());
+
+    app.use("/api", robotsRouter);
+
+    app.listen(port, () => {
+      console.log(`Server listening on port ${port}`);
+    });
+  })
+  .catch((error) => {
+    console.log(`Database connection error: ${error}`);
+  });
+
+export default app;

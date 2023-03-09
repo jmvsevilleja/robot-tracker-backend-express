@@ -1,10 +1,10 @@
 {
   "name": "robot-tracker-backend-express",
   "version": "1.0.0",
-  "description": "Robot Tracker API using express",
-  "main": "dist/index.js",
+  "description": "A simple app to list and track bots",
+  "main": "dist/server.js",
   "scripts": {
-    "start": "node dist/index.js",
+    "start": "node dist/server.js",
     "dev": "nodemon --watch src/**/*.ts --exec ts-node src/server.ts",
     "build": "tsc"
   },
@@ -29,8 +29,9 @@
     "cors": "^2.8.5",
     "express": "^4.18.2",
     "jsonwebtoken": "^9.0.0",
-    "mongoose": "^7.0.1",
+    "mongodb": "^4.14.0",
     "nodemon": "^2.0.21",
+    "reflect-metadata": "^0.1.13",
     "typeorm": "^0.3.12",
     "typescript": "^4.9.5"
   },
