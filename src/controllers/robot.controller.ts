@@ -1,10 +1,14 @@
 import { Request, Response } from "express";
 import { getRepository } from "typeorm";
 import { Robot } from "../entities/robot.entity";
+import { avatarType, getAvatarUrl } from "../utils/avatar.util";
 
 export const createRobot = async (req: Request, res: Response) => {
-  const { name, purpose, avatarUrl } = req.body;
+  const { name, purpose } = req.body;
   const robotRepository = getRepository(Robot);
+
+  // get a random avatar
+  const avatarUrl = await getAvatarUrl(name, avatarType.MALE);
 
   const robot = robotRepository.create({
     name,
