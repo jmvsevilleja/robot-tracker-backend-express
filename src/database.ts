@@ -1,5 +1,6 @@
 import { createConnection, ConnectionOptions } from "typeorm";
 import { Robot } from "./entities/robot.entity";
+import { User } from "./entities/user.entity";
 
 const connectionOpts: ConnectionOptions = {
   type: "mongodb",
@@ -7,7 +8,7 @@ const connectionOpts: ConnectionOptions = {
   host: process.env.DB_HOST || "127.0.0.1",
   port: parseInt(process.env.DB_PORT || "27017", 10),
   database: process.env.DB_NAME || "robots",
-  entities: [Robot],
+  entities: [Robot, User],
   synchronize: true,
   useUnifiedTopology: true,
 };
