@@ -5,6 +5,7 @@ import { createConnection } from "typeorm";
 import dotenv from "dotenv";
 import robotsRouter from "./routes/robots.route";
 import bodyParser from "body-parser";
+import { connectDB } from "./database";
 
 dotenv.config();
 
@@ -19,15 +20,15 @@ app.get("/", (req: Request, res: Response) => {
   res.send("Welcome to Robot Tracker API!");
 });
 
-createConnection()
-  .then((connection) => {
-    console.log(`Connected to ${connection.options.type} database.`);
+connectDB()
+  .then(() => {
+    console.log(`Connected to database.`);
     const app = express();
 
     app.use(cors());
     app.use(bodyParser.json());
 
-    app.use("/api", robotsRouter);
+    app.use("/robots", robotsRouter);
 
     app.listen(port, () => {
       console.log(`Server listening on port ${port}`);
