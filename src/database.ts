@@ -9,6 +9,7 @@ const connectionOpts: ConnectionOptions = {
   database: process.env.DB_NAME || "robots",
   entities: [Robot],
   synchronize: true,
+  useUnifiedTopology: true,
 };
 
 export const connectDB = async () => {
