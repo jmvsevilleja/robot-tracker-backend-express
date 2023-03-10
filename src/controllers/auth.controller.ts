@@ -15,7 +15,6 @@ export const loginUser = async (req: Request, res: Response) => {
   // Find the user by email
   const userRepository = getRepository(User);
   const user = await userRepository.findOne({ where: { email: email } });
-  console.log("user", user);
 
   // Check if the user exists
   if (!user) {

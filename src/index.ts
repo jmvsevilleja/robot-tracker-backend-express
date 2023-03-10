@@ -2,14 +2,14 @@ import express, { Request, Response } from "express";
 import cors from "cors";
 import "reflect-metadata";
 
+import dotenv from "dotenv";
+dotenv.config();
+
 import robotsRouter from "./routes/robots.route";
 import authRouter from "./routes/auth.route";
 
 import bodyParser from "body-parser";
 import { connectDB } from "./database";
-
-import dotenv from "dotenv";
-dotenv.config();
 
 const app = express();
 const port = process.env.PORT || 3000;
