@@ -2,8 +2,6 @@ import jwt from "jsonwebtoken";
 import { Request, Response, NextFunction } from "express";
 import { getRepository } from "typeorm";
 import { User } from "../entities/user.entity";
-import dotenv from "dotenv";
-dotenv.config();
 
 interface AuthenticatedRequest extends Request {
   user?: User;

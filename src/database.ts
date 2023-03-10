@@ -1,8 +1,6 @@
 import { createConnection, ConnectionOptions } from "typeorm";
 import { Robot } from "./entities/robot.entity";
 import { User } from "./entities/user.entity";
-import dotenv from "dotenv";
-dotenv.config();
 
 const connectionOpts: ConnectionOptions = {
   type: "mongodb",

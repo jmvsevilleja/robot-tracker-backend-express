@@ -3,8 +3,6 @@ import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 import { getRepository } from "typeorm";
 import { User } from "../entities/user.entity";
-import dotenv from "dotenv";
-dotenv.config();
 
 export const loginUser = async (req: Request, res: Response) => {
   const { email, password } = req.body;
@@ -17,6 +15,7 @@ export const loginUser = async (req: Request, res: Response) => {
   // Find the user by email
   const userRepository = getRepository(User);
   const user = await userRepository.findOne({ where: { email: email } });
+  console.log("user", user);
 
   // Check if the user exists
   if (!user) {
