@@ -1,6 +1,6 @@
 # Robot Tracker API
 
-This is a simple app to list and track your robots. Each robot has a name and a purpose. You can browse (list), read (view), edit, add, and delete a robot.
+This is a simple API to list and track your robots. Each robot has a name and a purpose. You can browse (list), read (view), edit, add, and delete a robot.
 
 ## Technologies Used
 
@@ -9,6 +9,7 @@ This is a simple app to list and track your robots. Each robot has a name and a 
 - TypeScript
 - MongoDB
 - TypeORM
+- JWT
 
 ## Installation
 
